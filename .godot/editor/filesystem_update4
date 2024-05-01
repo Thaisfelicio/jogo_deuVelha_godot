@@ -1,0 +1,7 @@
+res://default_env.tres
+res://Principal.tscn
+res://XAzul.tscn
+res://CirculoVerde.tscn
+res://Tabuleiro.tscn
+res://game_over_menu.tscn
+res://Principal.gd

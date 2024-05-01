@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://d4ixvfvb8xfol"]
+
+[ext_resource type="Texture2D" uid="uid://h51bimgyawu7" path="res://assets/El4sP0d_avatares/3.png" id="1_ai7mi"]
+
+[node name="CirculoVerde" type="Sprite2D" groups=["grupoCirculoVerde"]]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ai7mi")

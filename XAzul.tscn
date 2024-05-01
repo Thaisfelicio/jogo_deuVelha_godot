@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://de7dafxqhp5gj"]
+
+[ext_resource type="Texture2D" uid="uid://b64nba8voijko" path="res://assets/El4sP0d_avatares/1.png" id="1_i53pv"]
+
+[node name="XAzul" type="Sprite2D" groups=["grupoXAzul"]]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_i53pv")
