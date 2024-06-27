@@ -1,38 +1,131 @@
 extends Node2D
 
-# Definir uma matriz para representar o tabuleiro
-var board := [[0, 0, 0],
-              [0, 0, 0],
-              [0, 0, 0]]
+# Variáveis exportadas para o editor
+@export var cena_circulo: PackedScene
+@export var cena_xAzul: PackedScene
 
-# Variável para armazenar o quadrado premiado atualmente
-var quadrado_premiado := null
+# Variáveis de controle do jogo
+var jogador: int
+var movimentos: int
+var ganhador: int
+var temp_marcador
+var posicao_painel_jogador: Vector2i
+var dados_grade: Array
+var posicao_grade: Vector2i
+var tamanho_tabuleiro: int
+var tamanho_celula: int
+var soma_linha: int
+var soma_coluna: int
+var soma_diagonal1: int
+var soma_diagonal2: int
+
+# Variáveis para controle do bônus
+var bonus_disponivel: bool = false
+var escolha_bonus: int = 0  # 1 para excluir jogada, -1 para bloquear a vez do adversário
 
 func _ready():
-    # Iniciar o jogo
-    selecionar_quadrado_premiado()
+    tamanho_tabuleiro = $Tabuleiro.texture.get_width()
+    tamanho_celula = tamanho_tabuleiro / 3
+    posicao_painel_jogador = $PainelJogador.get_position()
+    novo_jogo()
 
-# Função para selecionar um novo quadrado premiado aleatoriamente
-func selecionar_quadrado_premiado():
-    var possiveis_quadrados = []
-    
-    # Encontrar todos os quadrados vazios para o próximo prêmio
-    for x in range(3):
-        for y in range(3):
-            if board[x][y] == 0:  # Quadrado vazio
-                possiveis_quadrados.append(Vector2(x, y))
-    
-    # Escolher aleatoriamente um quadrado entre os possíveis
-    if possiveis_quadrados.size() > 0:
-        quadrado_premiado = possiveis_quadrados[randi() % possiveis_quadrados.size()]
-        print("Novo quadrado premiado:", quadrado_premiado)
+func _input(event):
+    if event is InputEventMouseButton:
+        if event.button_index == BUTTON_LEFT and event.pressed:
+            if event.position.x < tamanho_tabuleiro:
+                posicao_grade = Vector2i(event.position / tamanho_celula)
+                if dados_grade[posicao_grade.y][posicao_grade.x] == 0:
+                    movimentos += 1
+                    if bonus_disponivel:
+                        aplicar_bonus(posicao_grade)
+                    else:
+                        fazer_jogada(posicao_grade)
+                    print(dados_grade)
+
+func novo_jogo():
+    jogador = 1
+    movimentos = 0
+    ganhador = 0
+    dados_grade = [
+        [0, 0, 0], 
+        [0, 0, 0], 
+        [0, 0, 0]
+    ]
+    soma_linha = 0
+    soma_coluna = 0
+    soma_diagonal1 = 0
+    soma_diagonal2 = 0
+    get_tree().call_group("grupoXAzul", "queue_free")
+    get_tree().call_group("grupoCirculoVerde", "queue_free")
+    criar_marcador(jogador, posicao_painel_jogador + Vector2i(tamanho_celula / 2, tamanho_celula / 2), true)
+    $GameOverMenu.hide()
+    get_tree().paused = false
+    bonus_disponivel = false
+    escolha_bonus = 0
+
+func criar_marcador(jogador, posicao, temp = false):
+    if jogador == 1:
+        var circulo = cena_circulo.instantiate()
+        circulo.position = posicao
+        add_child(circulo)
+        if temp: temp_marcador = circulo
     else:
-        print("Não há quadrados vazios para selecionar como premiado.")
+        var xAzul = cena_xAzul.instantiate()
+        xAzul.position = posicao
+        add_child(xAzul)
+        if temp: temp_marcador = xAzul
 
-# Função para verificar se um jogador fez uma jogada no quadrado premiado
-func verificar_movimento_premiado(jogador, linha, coluna):
-    if quadrado_premiado and quadrado_premiado.x == linha and quadrado_premiado.y == coluna:
-        aplicar_bonus()
+func verificar_ganhador():
+    for i in range(len(dados_grade)):
+        soma_linha = dados_grade[i][0] + dados_grade[i][1] + dados_grade[i][2]
+        soma_coluna = dados_grade[0][i] + dados_grade[1][i] + dados_grade[2][i]
+        soma_diagonal1 = dados_grade[0][0] + dados_grade[1][1] + dados_grade[2][2]
+        soma_diagonal2 = dados_grade[0][2] + dados_grade[1][1] + dados_grade[2][0]
+        
+        if soma_linha == 3 or soma_coluna == 3 or soma_diagonal1 == 3 or soma_diagonal2 == 3:
+            ganhador = 1
+        elif soma_linha == -3 or soma_coluna == -3 or soma_diagonal1 == -3 or soma_diagonal2 == -3:
+            ganhador = -1
+    return ganhador
+
+func aplicar_bonus(posicao):
+    if escolha_bonus == 1:
+        excluir_jogada_adversario()
+    elif escolha_bonus == -1:
+        bloquear_vez_adversario()
+
+    bonus_disponivel = false
+    escolha_bonus = 0
+    fazer_jogada(posicao)
+
+func excluir_jogada_adversario():
+    # Implementar lógica para excluir a última jogada do adversário
+    # Aqui você pode resetar a última jogada do adversário (se possível no seu jogo)
+
+func bloquear_vez_adversario():
+    # Implementar lógica para bloquear a vez do adversário na próxima jogada
+    # Isso pode ser feito de várias formas, por exemplo, ajustando as condições de entrada no _input
+
+func fazer_jogada(posicao):
+    dados_grade[posicao.y][posicao.x] = jogador
+    criar_marcador(jogador, posicao * tamanho_celula + Vector2i(tamanho_celula / 2, tamanho_celula / 2))
+    if verificar_ganhador() != 0:
+        get_tree().paused = true
+        $GameOverMenu.show()
+        if ganhador == 1:
+            $GameOverMenu.get_node("LabelResultado").text = "Jogador(a) 1 ganhou!"
+        elif ganhador == -1:
+            $GameOverMenu.get_node("LabelResultado").text = "Jogador(a) 2 ganhou!"
+    elif movimentos == 9:
+        get_tree().paused = true
+        $GameOverMenu.show()
+        $GameOverMenu.get_node("LabelResultado").text = "Deu empate!"
+    else:
+        jogador *= -1
+        temp_marcador.queue_free()
+        criar_marcador(jogador, posicao_painel_jogador + Vector2i(tamanho_celula / 2, tamanho_celula / 2), true)
+        print("Vez do jogador", jogador)
+        bonus_disponivel = true  # Ativar o bônus após a jogada do jogador
 
 # Função para aplicar o bônus quando o quadrado premiado é jogado
 func aplicar_bonus():
