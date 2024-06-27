@@ -35,7 +35,6 @@ func _input(event):
             if event.position.x < tamanho_tabuleiro:
                 posicao_grade = Vector2i(event.position / tamanho_celula)
                 if dados_grade[posicao_grade.y][posicao_grade.x] == 0:
-                    movimentos += 1
                     if bonus_disponivel:
                         aplicar_bonus(posicao_grade)
                     else:
@@ -65,18 +64,18 @@ func novo_jogo():
 
 func criar_marcador(jogador, posicao, temp = false):
     if jogador == 1:
-        var circulo = cena_circulo.instantiate()
+        var circulo = cena_circulo.instance()
         circulo.position = posicao
         add_child(circulo)
         if temp: temp_marcador = circulo
     else:
-        var xAzul = cena_xAzul.instantiate()
+        var xAzul = cena_xAzul.instance()
         xAzul.position = posicao
         add_child(xAzul)
         if temp: temp_marcador = xAzul
 
 func verificar_ganhador():
-    for i in range(len(dados_grade)):
+    for i in range(3):
         soma_linha = dados_grade[i][0] + dados_grade[i][1] + dados_grade[i][2]
         soma_coluna = dados_grade[0][i] + dados_grade[1][i] + dados_grade[2][i]
         soma_diagonal1 = dados_grade[0][0] + dados_grade[1][1] + dados_grade[2][2]
@@ -90,7 +89,7 @@ func verificar_ganhador():
 
 func aplicar_bonus(posicao):
     if escolha_bonus == 1:
-        excluir_jogada_adversario()
+        excluir_jogada_adversario(posicao)
     elif escolha_bonus == -1:
         bloquear_vez_adversario()
 
@@ -98,13 +97,14 @@ func aplicar_bonus(posicao):
     escolha_bonus = 0
     fazer_jogada(posicao)
 
-func excluir_jogada_adversario():
-    # Implementar lógica para excluir a última jogada do adversário
-    # Aqui você pode resetar a última jogada do adversário (se possível no seu jogo)
+func excluir_jogada_adversario(posicao):
+    if dados_grade[posicao.y][posicao.x] != 0:
+        dados_grade[posicao.y][posicao.x] = 0
+        # Implemente uma lógica adicional se necessário, como desfazer a última jogada do adversário
 
 func bloquear_vez_adversario():
-    # Implementar lógica para bloquear a vez do adversário na próxima jogada
-    # Isso pode ser feito de várias formas, por exemplo, ajustando as condições de entrada no _input
+    # Pode ser implementado de várias formas, como alterar a lógica no _input para ignorar a jogada do adversário
+    # Aqui, você pode adicionar lógica para impedir o adversário de jogar na próxima vez
 
 func fazer_jogada(posicao):
     dados_grade[posicao.y][posicao.x] = jogador
@@ -127,7 +127,3 @@ func fazer_jogada(posicao):
         print("Vez do jogador", jogador)
         bonus_disponivel = true  # Ativar o bônus após a jogada do jogador
 
-# Função para aplicar o bônus quando o quadrado premiado é jogado
-func aplicar_bonus():
-    print("Parabéns! Você recebeu um bônus por jogar no quadrado premiado.")
-    selecionar_quadrado_premiado()  # Selecionar um novo quadrado premiado para a próxima rodada
