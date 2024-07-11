@@ -51,7 +51,7 @@ func _input(event):
 					elif movimentos == 9:
 						get_tree().paused = true
 						$GameOverMenu.show()
-						$GameOverMenu.get_node("LabelResultado").text = "Deu empate!"
+						$GameOverMenu.get_node("LabelResultado").text = "Deu velha!"
 					jogador *= -1
 					#atualizar o marcador do painel
 					temp_marcador.queue_free()
