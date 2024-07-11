@@ -1,0 +1,135 @@
+extends Node2D
+
+@export var cena_circulo: PackedScene
+@export var cena_xAzul: PackedScene
+
+var jogador: int = 1
+var movimentos: int = 0
+var ganhador: int = 0
+var temp_marcador
+var posicao_painel_jogador: Vector2
+var dados_grade: Array 
+var posicao_grade: Vector2
+var tamanho_tabuleiro: int
+var tamanho_celula: int
+var soma_linha: int
+var soma_coluna: int
+var soma_diagonal1: int
+var soma_diagonal2: int
+
+func _ready():
+	$Button.connect("pressed", self, "_on_Button_pressed")
+   
+	tamanho_tabuleiro = $Tabuleiro.texture.get_width()
+	tamanho_celula = tamanho_tabuleiro / 3
+	
+	posicao_painel_jogador = $PainelJogador.rect_position
+	
+	novo_jogo()
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			if event.position.x < tamanho_tabuleiro:
+				posicao_grade = Vector2(event.position / tamanho_celula)
+				if dados_grade[posicao_grade.y][posicao_grade.x] == 0:
+					movimentos += 1
+					dados_grade[posicao_grade.y][posicao_grade.x] = jogador
+					criar_marcador(jogador, posicao_grade * tamanho_celula + Vector2(tamanho_celula / 2, tamanho_celula / 2))
+					if verificar_ganhador() != 0:
+						get_tree().paused = true
+						$GameOverMenu.show()
+						if ganhador == 1:
+							$GameOverMenu.get_node("LabelResultado").text = "Jogador(a) 1 ganhou!"
+						elif ganhador == -1:
+							$GameOverMenu.get_node("LabelResultado").text = "Jogador(a) 2 ganhou!"
+					elif movimentos == 9:
+						get_tree().paused = true
+						$GameOverMenu.show()
+						$GameOverMenu.get_node("LabelResultado").text = "Deu empate!"
+					jogador *= -1
+					temp_marcador.queue_free()
+					criar_marcador(jogador, posicao_painel_jogador + Vector2(tamanho_celula / 2, tamanho_celula / 2), true)
+					print(dados_grade)
+
+func novo_jogo():
+	jogador = 1
+	movimentos = 0
+	ganhador = 0
+	dados_grade = [
+		[0, 0, 0], 
+		[0, 0, 0], 
+		[0, 0, 0]
+	]
+	soma_linha = 0
+	soma_coluna = 0
+	soma_diagonal1 = 0
+	get_tree().call_group("grupoXAzul", "queue_free")
+	get_tree().call_group("grupoCirculoVerde", "queue_free")
+	criar_marcador(jogador, posicao_painel_jogador + Vector2(tamanho_celula / 2, tamanho_celula / 2), true)
+	$GameOverMenu.hide()
+	get_tree().paused = false
+
+func criar_marcador(jogador, posicao, temp = false):
+	if jogador == 1:
+		var circulo = cena_circulo.instance()
+		circulo.position = posicao
+		add_child(circulo)
+		if temp:
+			temp_marcador = circulo
+	else:
+		var xAzul = cena_xAzul.instance()
+		xAzul.position = posicao
+		add_child(xAzul)
+		if temp:
+			temp_marcador = xAzul
+
+func verificar_ganhador():
+	for i in range(3):
+		soma_linha = dados_grade[i][0] + dados_grade[i][1] + dados_grade[i][2]
+		soma_coluna = dados_grade[0][i] + dados_grade[1][i] + dados_grade[2][i]
+		soma_diagonal1 = dados_grade[0][0] + dados_grade[1][1] + dados_grade[2][2]
+		soma_diagonal2 = dados_grade[0][2] + dados_grade[1][1] + dados_grade[2][0]
+		
+		if soma_linha == 3 or soma_coluna == 3 or soma_diagonal1 == 3 or soma_diagonal2 == 3:
+			ganhador = 1
+		elif soma_linha == -3 or soma_coluna == -3 or soma_diagonal1 == -3 or soma_diagonal2 == -3:
+			ganhador = -1
+	return ganhador
+
+func _on_game_over_menu_recomecar():
+	novo_jogo()
+
+func _on_Button_pressed():
+    dialog = Popup.new()
+	dialog.title = "Escolha uma opção"
+	dialog.rect_min_size = Vector2(200, 100)
+	dialog.popup_centered()
+    
+	var button_bloquear = Button.new()
+	button_bloquear.text = "Bloquear jogada do adversário"
+	button_bloquear.connect("pressed", self, "_on_bloquear_pressed")
+	dialog.add_child(button_bloquear)
+    
+	var button_apagar = Button.new()
+	button_apagar.text = "Apagar jogada do adversário"
+	button_apagar.connect("pressed", self, "_on_apagar_pressed")
+	dialog.add_child(button_apagar)
+
+	add_child(dialog)
+
+func _on_bloquear_pressed():
+	print("Bloquear escolhida!")
+    # Implemente a lógica para bloquear a jogada do adversário aqui
+    # Por exemplo: 
+    
+    get_tree().paused = true
+
+	dialog.hide()
+
+func _on_apagar_pressed():
+	print("Apagar escolhida!")
+ 
+	dados_grade[posicao_grade.y][posicao_grade.x] = 0
+
+	dialog.hide()
