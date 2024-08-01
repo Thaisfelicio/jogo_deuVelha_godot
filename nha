@@ -1,0 +1,186 @@
+extends Node2D
+
+@export var cena_circulo: PackedScene  # Define o tipo como PackedScene
+@export var cena_xAzul: PackedScene  # Define o tipo como PackedScene
+
+var jogador: int = 1
+var movimentos: int = 0
+var ganhador: int = 0
+var temp_marcador: Node2D = null  # Define o tipo como Node2D
+var posicao_painel_jogador: Vector2
+var dados_grade: Array = []  # Inicializa o array de dados
+var posicao_grade: Vector2
+var tamanho_tabuleiro: int
+var tamanho_celula: int
+var bonus_atual: bool = false
+var bloqueio_ativo: bool = false  # Variável para controlar o bloqueio
+var jogador_bloqueado: int = 0  # Armazena o jogador que está bloqueado
+var ultimos_movimentos: Array = []  # Array para armazenar as jogadas
+
+func _ready():
+	$Button.connect("pressed", Callable(self, "_on_Button_pressed"))
+	
+	tamanho_tabuleiro = $Tabuleiro.texture.get_width()
+	if tamanho_tabuleiro == 0:
+		tamanho_tabuleiro = 300  # Valor padrão se a textura não estiver carregada
+	tamanho_celula = tamanho_tabuleiro / 3
+	
+	posicao_painel_jogador = $PainelJogador.rect_position
+	
+	novo_jogo()
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if event.position.x < tamanho_tabuleiro:
+				posicao_grade = Vector2(event.position / tamanho_celula)
+				if dados_grade[posicao_grade.y][posicao_grade.x] == 0 and not (bloqueio_ativo and jogador == jogador_bloqueado):
+					movimentos += 1
+					dados_grade[posicao_grade.y][posicao_grade.x] = jogador
+					ultimos_movimentos.append(posicao_grade)  # Armazena a jogada atual
+					criar_marcador(jogador, posicao_grade * tamanho_celula + Vector2(tamanho_celula / 2, tamanho_celula / 2))
+					
+					if verificar_ganhador() != 0:
+						get_tree().paused = true
+						$GameOverMenu.show()
+						if ganhador == 1:
+							$GameOverMenu.get_node("LabelResultado").text = "Jogador 1 ganhou!"
+						elif ganhador == -1:
+							$GameOverMenu.get_node("LabelResultado").text = "Jogador 2 ganhou!"
+					elif movimentos == 9:
+						get_tree().paused = true
+						$GameOverMenu.show()
+						$GameOverMenu.get_node("LabelResultado").text = "Deu empate!"
+					else:
+						# Checa se um bônus é ativado
+						if movimentos % 3 == 0:  # A cada 3 movimentos
+							bonus_atual = true
+							_on_bonus_ativado()
+					
+					jogador *= -1
+					if temp_marcador != null:
+						temp_marcador.queue_free()
+					criar_marcador(jogador, posicao_painel_jogador + Vector2(tamanho_celula / 2, tamanho_celula / 2), true)
+					print(dados_grade)
+
+func novo_jogo():
+	jogador = 1
+	movimentos = 0
+	ganhador = 0
+	bloqueio_ativo = false  # Resetar o estado do bloqueio
+	jogador_bloqueado = 0  # Resetar o jogador bloqueado
+	dados_grade = [
+		[0, 0, 0], 
+		[0, 0, 0], 
+		[0, 0, 0]
+	]
+	ultimos_movimentos.clear()  # Limpa as jogadas anteriores
+	get_tree().call_group("grupoXAzul", "queue_free")
+	get_tree().call_group("grupoCirculoVerde", "queue_free")
+	criar_marcador(jogador, posicao_painel_jogador + Vector2(tamanho_celula / 2, tamanho_celula / 2), true)
+	$GameOverMenu.hide()
+	get_tree().paused = false
+
+func criar_marcador(jogador, posicao, temp = false):
+	if jogador == 1:
+		var circulo: Node2D = cena_circulo.instantiate()  # Adicionando o tipo de variável
+		circulo.position = posicao
+		add_child(circulo)
+		if temp:
+			temp_marcador = circulo
+	else:
+		var xAzul: Node2D = cena_xAzul.instantiate()  # Adicionando o tipo de variável
+		xAzul.position = posicao
+		add_child(xAzul)
+		if temp:
+			temp_marcador = xAzul
+
+func verificar_ganhador():
+	for i in range(3):
+		var soma_linha = dados_grade[i][0] + dados_grade[i][1] + dados_grade[i][2]
+		var soma_coluna = dados_grade[0][i] + dados_grade[1][i] + dados_grade[2][i]
+		var soma_diagonal1 = dados_grade[0][0] + dados_grade[1][1] + dados_grade[2][2]
+		var soma_diagonal2 = dados_grade[0][2] + dados_grade[1][1] + dados_grade[2][0]
+		
+		if soma_linha == 3 or soma_coluna == 3 or soma_diagonal1 == 3 or soma_diagonal2 == 3:
+			ganhador = 1
+		elif soma_linha == -3 or soma_coluna == -3 or soma_diagonal1 == -3 or soma_diagonal2 == -3:
+			ganhador = -1
+	return ganhador
+
+func _on_game_over_menu_recomecar():
+	novo_jogo()
+
+func _on_Button_pressed():
+	var dialog: Popup = Popup.new()  # Declare o tipo de diálogo
+	dialog.title = "Escolha uma opção"
+	dialog.popup_exclusive = true
+	
+	dialog.add_button("Bloquear jogada do adversário", 0)
+	dialog.add_button("Apagar jogada do adversário", 1)
+	
+	dialog.connect("popup_hide", Callable(self, "_on_dialog_hide"))
+	add_child(dialog)
+	dialog.popup_centered()  # Use popup_centered() para exibir o diálogo
+
+func _on_dialog_hide():
+	var dialog: Popup = get_node("Popup")  # Declare o tipo de diálogo
+	var selected_option = dialog.selected_button_index
+
+	match selected_option:
+		0:
+			print("Opção Bloquear escolhida!")
+			bloquear_jogada_adversario()
+		1:
+			print("Opção Apagar escolhida!")
+			apagar_jogada_adversario()
+			
+	dialog.queue_free()
+
+func _on_bonus_ativado():
+	var dialog: Popup = Popup.new()  # Declare o tipo de diálogo
+	dialog.title = "Bônus Ativado!"
+	dialog.popup_exclusive = true
+	
+	dialog.add_button("Bloquear jogada do adversário", 0)
+	dialog.add_button("Apagar jogada do adversário", 1)
+	
+	dialog.connect("popup_hide", Callable(self, "_on_dialog_bônus_hide"))
+	add_child(dialog)
+	dialog.popup_centered()  # Use popup_centered() para exibir o diálogo
+
+func _on_dialog_bônus_hide():
+	var dialog: Popup = get_node("Popup")  # Declare o tipo de diálogo
+	var selected_option = dialog.selected_button_index
+
+	match selected_option:
+		0:
+			print("Opção Bloquear escolhida no bônus!")
+			bloquear_jogada_adversario()
+		1:
+			print("Opção Apagar escolhida no bônus!")
+			apagar_jogada_adversario()
+
+	dialog.queue_free()
+
+func bloquear_jogada_adversario():
+	bloqueio_ativo = true
+	jogador_bloqueado = -jogador  # Bloqueia o adversário
+	print("Jogador", jogador_bloqueado, "está bloqueado para a próxima jogada.")
+
+func apagar_jogada_adversario():
+	if ultimos_movimentos.size() > 0:
+		var posicao_para_apagar: Vector2 = ultimos_movimentos.pop_back()  # Remove a última jogada
+		remove_marcador(posicao_para_apagar)  # Chama a função para remover o marcador
+		print("Jogada do adversário apagada.")
+	else:
+		print("Nenhuma jogada anterior para apagar.")
+
+func remove_marcador(posicao: Vector2):
+	for child in get_children():
+		if child is cena_circulo and child.position == posicao * tamanho_celula + Vector2(tamanho_celula / 2, tamanho_celula / 2):
+			child.queue_free()  # Remove o círculo
+			break
+		elif child is cena_xAzul and child.position == posicao * tamanho_celula + Vector2(tamanho_celula / 2, tamanho_celula / 2):
+			child.queue_free()  # Remove o X
+			break
