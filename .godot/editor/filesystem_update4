@@ -1,0 +1,9 @@
+res://default_env.tres
+res://Principal.tscn
+res://XAzul.tscn
+res://CirculoVerde.tscn
+res://Tabuleiro.tscn
+res://game_over_menu.tscn
+res://tela_titulo.tscn
+res://tela_titulo.gd
+res://creditos.tscn

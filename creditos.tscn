@@ -1,0 +1,102 @@
+[gd_scene load_steps=9 format=3 uid="uid://ctbcjpapcc387"]
+
+[ext_resource type="Texture2D" uid="uid://c37up8n3d5a7f" path="res://assets/creditos/background_creditos.jpg" id="1_yuyqu"]
+[ext_resource type="Texture2D" uid="uid://dpnksr5n3yy1h" path="res://assets/creditos/El4spod_sem_fundo.png" id="2_fucx7"]
+[ext_resource type="FontFile" uid="uid://h3dfjer5hbvw" path="res://assets/fontes/Robot Crush.ttf" id="3_bfirn"]
+
+[sub_resource type="Theme" id="Theme_gag0e"]
+Button/colors/font_color = Color(0.709804, 1, 0, 1)
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("3_bfirn")
+
+[sub_resource type="Theme" id="Theme_nuwj0"]
+Button/colors/font_color = Color(0, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0, 1)
+Button/colors/icon_hover_color = Color(0.239216, 1, 0.611765, 1)
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("3_bfirn")
+
+[sub_resource type="Theme" id="Theme_iwfpr"]
+Button/colors/font_color = Color(0.658824, 1, 0.87451, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0, 1)
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("3_bfirn")
+
+[sub_resource type="Theme" id="Theme_0l1g8"]
+Button/colors/font_color = Color(1, 0.618549, 0.639339, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.94902, 0, 1)
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("3_bfirn")
+
+[sub_resource type="Theme" id="Theme_ojdg7"]
+Button/colors/font_color = Color(0, 0.71454, 0.99614, 1)
+Button/colors/font_hover_color = Color(0.732332, 0.000409496, 0.732327, 1)
+Button/font_sizes/font_size = 15
+Button/fonts/font = ExtResource("3_bfirn")
+
+[node name="Creditos" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="fundo" type="TextureRect" parent="."]
+modulate = Color(0.988235, 1, 1, 0.909804)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yuyqu")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="nome_equipe" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_fucx7")
+
+[node name="integrantes" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_gag0e")
+text = "integrantes:"
+
+[node name="thais" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_nuwj0")
+text = "Thaís Felício de Paula Silva"
+
+[node name="perola" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_iwfpr")
+text = "Pérola Souza Moreira"
+
+[node name="leticia" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_0l1g8")
+text = "Letícia de assis e Silva Leite"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="botao_voltar" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ojdg7")
+text = "Voltar"

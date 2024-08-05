@@ -1,0 +1,88 @@
+[gd_scene load_steps=8 format=3 uid="uid://bofej50phsfu"]
+
+[ext_resource type="Script" path="res://tela_titulo.gd" id="1_7k8a6"]
+[ext_resource type="Texture2D" uid="uid://d18mba1s6bwlm" path="res://assets/background_fundo.png" id="1_uduws"]
+[ext_resource type="Texture2D" uid="uid://k6j6moxovoci" path="res://assets/Deu_velha_logo_sem_fundo.png" id="2_ff37g"]
+[ext_resource type="FontFile" uid="uid://h3dfjer5hbvw" path="res://assets/fontes/Robot Crush.ttf" id="3_yokre"]
+
+[sub_resource type="Theme" id="Theme_la1ex"]
+Button/colors/font_color = Color(0.295392, 1, 0.998552, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.243137, 0.94902, 1)
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("3_yokre")
+
+[sub_resource type="Theme" id="Theme_dtaa5"]
+Button/colors/font_color = Color(0.294118, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.94902, 0, 0.94902, 1)
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("3_yokre")
+
+[sub_resource type="Theme" id="Theme_7u2s7"]
+Button/colors/font_color = Color(0.294118, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.94902, 0, 0.94902, 1)
+Button/font_sizes/font_size = 25
+Button/fonts/font = ExtResource("3_yokre")
+
+[node name="TelaTitulo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7k8a6")
+
+[node name="fundo" type="TextureRect" parent="."]
+modulate = Color(1, 0, 1, 1)
+layout_mode = 0
+offset_right = 1798.0
+offset_bottom = 1194.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_uduws")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="logo_jogo" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_ff37g")
+
+[node name="botao_comecar" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_la1ex")
+text = "Começar"
+
+[node name="botao_creditos" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_dtaa5")
+text = "Créditos"
+
+[node name="botao_sair" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_7u2s7")
+text = "Sair"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/botao_comecar" to="." method="_on_botao_comecar_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/botao_creditos" to="." method="_on_botao_creditos_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/botao_sair" to="." method="_on_botao_sair_pressed"]
