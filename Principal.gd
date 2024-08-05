@@ -17,6 +17,8 @@ var soma_coluna: int
 var soma_diagonal1: int
 var soma_diagonal2: int
 
+@onready var efeito = $efeito as AudioStreamPlayer
+
 func _ready():
 	tamanho_tabuleiro = $Tabuleiro.texture.get_width()
 	#dividir o tamanho do tabuleiro por 3 para pegar o tamanho induvidual da célula
@@ -34,6 +36,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if event.position.x < tamanho_tabuleiro:
+				efeito.play()
 				posicao_grade = Vector2i(event.position / tamanho_celula)
 				if dados_grade[posicao_grade.y][posicao_grade.x] == 0:
 					movimentos += 1

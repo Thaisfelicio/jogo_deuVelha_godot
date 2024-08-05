@@ -1,28 +1,31 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1720699446
-CirculoVerde.tscn::PackedScene::9212687826268440227::1722518960::0::1::::<><>::uid://h51bimgyawu7::::res://assets/El4sP0d_avatares/3.png
-default_env.tres::Environment::4037960910174650082::1722518962::0::1::::<><>::
+::res://::1722873821
+CirculoVerde.tscn::PackedScene::9212687826268440227::1722873821::0::1::::<><>::uid://h51bimgyawu7::::res://assets/El4sP0d_avatares/3.png
+creditos.tscn::PackedScene::6108632068928122498::1722873821::0::1::::<><>::res://creditos.gd<>uid://c37up8n3d5a7f::::res://assets/creditos/background_creditos.jpg<>uid://dpnksr5n3yy1h::::res://assets/creditos/El4spod_sem_fundo.png<>uid://h3dfjer5hbvw::::res://assets/fontes/Robot Crush.ttf<>uid://dni746noc5yq8::::res://assets/musics/credits_music.mp3
+default_env.tres::Environment::4037960910174650082::1722873821::0::1::::<><>::
 game_over_menu.gd::GDScript::-1::1720699446::0::1::::<>CanvasLayer<>::
-game_over_menu.tscn::PackedScene::6656527397500742563::1722518962::0::1::::<><>::res://game_over_menu.gd
+game_over_menu.tscn::PackedScene::6656527397500742563::1722873821::0::1::::<><>::res://game_over_menu.gd
 icon.png::CompressedTexture2D::4885659594363379753::1720699446::1720699446::1::::<><>::
-Principal.gd::GDScript::-1::1720699446::0::1::::<>Node2D<>::
-Principal.tscn::PackedScene::1235445950934097611::1722518960::0::1::::<><>::uid://dawi35eby6t7o::::res://Tabuleiro.tscn<>res://Principal.gd<>uid://d4ixvfvb8xfol::::res://CirculoVerde.tscn<>uid://de7dafxqhp5gj::::res://XAzul.tscn<>uid://c13qbe71tacx4::::res://game_over_menu.tscn
+Principal.gd::GDScript::-1::1722869024::0::1::::<>Node2D<>::
+Principal.tscn::PackedScene::1235445950934097611::1722873821::0::1::::<><>::uid://dawi35eby6t7o::::res://Tabuleiro.tscn<>res://Principal.gd<>uid://d4ixvfvb8xfol::::res://CirculoVerde.tscn<>uid://de7dafxqhp5gj::::res://XAzul.tscn<>uid://c13qbe71tacx4::::res://game_over_menu.tscn<>uid://xfhasuwqfdr1::::res://assets/musics/background_jogo.mp3<>uid://lp7036faaqkk::::res://assets/musics/efeito_jogada_o.wav
 README.md::TextFile::-1::1720699446::0::1::::<><>::
-tela_titulo.gd::GDScript::-1::1722518936::0::1::::<>Control<>::
-tela_titulo.tscn::PackedScene::99401380544831694::1722518962::0::1::::<><>::res://tela_titulo.gd<>uid://d18mba1s6bwlm::::res://assets/background_fundo.png<>uid://k6j6moxovoci::::res://assets/Deu_velha_logo_sem_fundo.png<>uid://h3dfjer5hbvw::::res://assets/fontes/Robot Crush.ttf
-Tabuleiro.tscn::PackedScene::7205215681798558002::1722518962::0::1::::<><>::uid://gt157ynvu7mk::::res://assets/grid.png
-XAzul.tscn::PackedScene::7506259963623842805::1722518960::0::1::::<><>::uid://b64nba8voijko::::res://assets/El4sP0d_avatares/1.png
-::res://assets/::1720699446
+creditos.gd::GDScript::-1::1722845693::0::1::::<>Control<>::
+default_bus_layout.tres::AudioBusLayout::1846256215569781247::1722852900::0::1::::<><>::
+Tabuleiro.tscn::PackedScene::7205215681798558002::1722873821::0::1::::<><>::uid://gt157ynvu7mk::::res://assets/grid.png
+tela_titulo.gd::GDScript::-1::1722523680::0::1::::<>Control<>::
+tela_titulo.tscn::PackedScene::99401380544831694::1722873821::0::1::::<><>::res://tela_titulo.gd<>uid://d18mba1s6bwlm::::res://assets/background_fundo.png<>uid://k6j6moxovoci::::res://assets/Deu_velha_logo_sem_fundo.png<>uid://h3dfjer5hbvw::::res://assets/fontes/Robot Crush.ttf<>uid://wpa1w2hcufdp::::res://assets/musics/menu_music.mp3
+XAzul.tscn::PackedScene::7506259963623842805::1722853286::0::1::::<><>::uid://b64nba8voijko::::res://assets/El4sP0d_avatares/1.png
+::res://assets/::1722850979
 background_fundo.png::CompressedTexture2D::9053026882283464210::1722511200::1722511266::1::::<><>::
+calmpill-1.png::CompressedTexture2D::6922826319292758900::1722843389::1722844703::1::::<><>::
+calmpill-2.png::CompressedTexture2D::7389764117034886223::1722843397::1722844703::1::::<><>::
 Deu_velha_logo_sem_fundo.png::CompressedTexture2D::766486612274155500::1722512882::1722512976::1::::<><>::
 grid.png::CompressedTexture2D::461990173226462642::1720699446::1720699446::1::::<><>::
 pilula.png::CompressedTexture2D::4895493710646857004::1720699446::1722508282::1::::<><>::
-pilula_verde.png::CompressedTexture2D::3911544322974463287::1720699446::1720699446::1::::<><>::
-pilula_vermelha.png::CompressedTexture2D::8527850114409235267::1720699446::1720699446::1::::<><>::
-::res://assets/creditos/::1722520584
+::res://assets/creditos/::1722843241
 background_creditos.jpg::CompressedTexture2D::6805431958775317669::1722520556::1722520820::1::::<><>::
 El4spod_sem_fundo.png::CompressedTexture2D::8239571870540653563::1722521494::1722521526::1::::<><>::
-::res://assets/El4sP0d_avatares/::1720699446
+::res://assets/El4sP0d_avatares/::1722843241
 1.png::CompressedTexture2D::4622932949991430918::1720699446::1720699446::1::::<><>::
 2.png::CompressedTexture2D::3712549001418911690::1720699446::1720699446::1::::<><>::
 3.png::CompressedTexture2D::554834104723017824::1720699446::1720699446::1::::<><>::
@@ -39,10 +42,18 @@ El4spod_sem_fundo.png::CompressedTexture2D::8239571870540653563::1722521494::172
 14.png::CompressedTexture2D::7350278497737989530::1720699446::1720699446::1::::<><>::
 15.png::CompressedTexture2D::1634239104500061290::1720699446::1720699446::1::::<><>::
 16.png::CompressedTexture2D::8775882730853073614::1720699446::1720699446::1::::<><>::
-::res://assets/fontes/::1722517454
+::res://assets/fontes/::1722843241
 license.txt::TextFile::-1::1562875008::0::1::::<><>::
 Robot Crush Italic.otf::FontFile::8580302434076725088::1562871932::1722517486::1::::<><>::
 Robot Crush Italic.ttf::FontFile::8763463749627014341::1562871946::1722517486::1::::<><>::
 Robot Crush.otf::FontFile::2061215384904064197::1562871804::1722517486::1::::<><>::
 Robot Crush.png::CompressedTexture2D::4150713865093147848::1562874874::1722517486::1::::<><>::
 Robot Crush.ttf::FontFile::549316042229862556::1562871816::1722517486::1::::<><>::
+::res://assets/musics/::1722869392
+677859__el_boss__game-success-fanfare.wav::AudioStreamWAV::1591396610670738262::1722869315::1722869347::1::::<><>::
+background_jogo.mp3::AudioStreamMP3::1625091288731961168::1722869213::1722873901::1::::<><>::
+bg_game_music.mp3::AudioStreamMP3::1497471252016973553::1722851101::1722852081::1::::<><>::
+credits_music.mp3::AudioStreamMP3::8090228421144259121::1722852784::1722852798::1::::<><>::
+efeito_jogada_o.wav::AudioStreamWAV::805032053715339006::1722861988::1722865279::1::::<><>::
+efeito_jogada_x.wav::AudioStreamWAV::7912801011191561928::1722861885::1722865279::1::::<><>::
+menu_music.mp3::AudioStreamMP3::1575167854534071401::1722850983::1722852081::1::::<><>::

@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ctbcjpapcc387"]
+[gd_scene load_steps=11 format=3 uid="uid://ctbcjpapcc387"]
 
+[ext_resource type="Script" path="res://creditos.gd" id="1_djis4"]
 [ext_resource type="Texture2D" uid="uid://c37up8n3d5a7f" path="res://assets/creditos/background_creditos.jpg" id="1_yuyqu"]
 [ext_resource type="Texture2D" uid="uid://dpnksr5n3yy1h" path="res://assets/creditos/El4spod_sem_fundo.png" id="2_fucx7"]
 [ext_resource type="FontFile" uid="uid://h3dfjer5hbvw" path="res://assets/fontes/Robot Crush.ttf" id="3_bfirn"]
+[ext_resource type="AudioStream" uid="uid://dni746noc5yq8" path="res://assets/musics/credits_music.mp3" id="5_3fmuo"]
 
 [sub_resource type="Theme" id="Theme_gag0e"]
 Button/colors/font_color = Color(0.709804, 1, 0, 1)
@@ -42,6 +44,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = ExtResource("1_djis4")
 
 [node name="fundo" type="TextureRect" parent="."]
 modulate = Color(0.988235, 1, 1, 0.909804)
@@ -100,3 +103,10 @@ layout_mode = 2
 layout_mode = 2
 theme = SubResource("Theme_ojdg7")
 text = "Voltar"
+
+[node name="Musica_fundo_creditos" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_3fmuo")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/botao_voltar" to="." method="_on_botao_voltar_pressed"]

@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://rupu5e44qvpj"]
+[gd_scene load_steps=10 format=3 uid="uid://rupu5e44qvpj"]
 
 [ext_resource type="PackedScene" uid="uid://dawi35eby6t7o" path="res://Tabuleiro.tscn" id="1"]
 [ext_resource type="Script" path="res://Principal.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://d4ixvfvb8xfol" path="res://CirculoVerde.tscn" id="2_pww5y"]
 [ext_resource type="PackedScene" uid="uid://de7dafxqhp5gj" path="res://XAzul.tscn" id="3_jek7j"]
 [ext_resource type="PackedScene" uid="uid://c13qbe71tacx4" path="res://game_over_menu.tscn" id="5_xuf6c"]
+[ext_resource type="AudioStream" uid="uid://xfhasuwqfdr1" path="res://assets/musics/background_jogo.mp3" id="6_77kwx"]
+[ext_resource type="AudioStream" uid="uid://lp7036faaqkk" path="res://assets/musics/efeito_jogada_o.wav" id="7_25c6m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0pjy"]
 bg_color = Color(0.7949, 0.369872, 1, 1)
@@ -69,6 +71,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vpcyn")
 
 [node name="GameOverMenu" parent="." instance=ExtResource("5_xuf6c")]
 process_mode = 2
+
+[node name="Musica_fundo_jogo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_77kwx")
+volume_db = -10.0
+autoplay = true
+
+[node name="efeito" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_25c6m")
+volume_db = -10.0
 
 [connection signal="child_exiting_tree" from="Tabuleiro" to="." method="_on_Tabuleiro_child_exiting_tree"]
 [connection signal="recomecar" from="GameOverMenu" to="." method="_on_game_over_menu_recomecar"]

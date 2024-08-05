@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bofej50phsfu"]
+[gd_scene load_steps=9 format=3 uid="uid://bofej50phsfu"]
 
 [ext_resource type="Script" path="res://tela_titulo.gd" id="1_7k8a6"]
 [ext_resource type="Texture2D" uid="uid://d18mba1s6bwlm" path="res://assets/background_fundo.png" id="1_uduws"]
 [ext_resource type="Texture2D" uid="uid://k6j6moxovoci" path="res://assets/Deu_velha_logo_sem_fundo.png" id="2_ff37g"]
 [ext_resource type="FontFile" uid="uid://h3dfjer5hbvw" path="res://assets/fontes/Robot Crush.ttf" id="3_yokre"]
+[ext_resource type="AudioStream" uid="uid://wpa1w2hcufdp" path="res://assets/musics/menu_music.mp3" id="5_aqkr7"]
 
 [sub_resource type="Theme" id="Theme_la1ex"]
 Button/colors/font_color = Color(0.295392, 1, 0.998552, 1)
@@ -82,6 +83,11 @@ text = "Créditos"
 layout_mode = 2
 theme = SubResource("Theme_7u2s7")
 text = "Sair"
+
+[node name="Musica_fundo_menu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_aqkr7")
+volume_db = -5.0
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/botao_comecar" to="." method="_on_botao_comecar_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/botao_creditos" to="." method="_on_botao_creditos_pressed"]

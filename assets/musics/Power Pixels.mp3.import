@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://4nl7ansrcspw"
+path="res://.godot/imported/Power Pixels.mp3-4c9a791fefd50e35f08bb2d5a2e6f68a.mp3str"
+
+[deps]
+
+source_file="res://assets/musics/Power Pixels.mp3"
+dest_files=["res://.godot/imported/Power Pixels.mp3-4c9a791fefd50e35f08bb2d5a2e6f68a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
