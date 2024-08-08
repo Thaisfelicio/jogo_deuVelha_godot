@@ -1,0 +1,15 @@
+res://default_bus_layout.tres
+res://default_env.tres
+res://pilula.tscn
+res://Principal.gd
+res://Principal.tscn
+res://CirculoVerde.tscn
+res://Tabuleiro.tscn
+res://game_over_menu.tscn
+res://tela_titulo.tscn
+res://creditos.tscn
+res://tela_escolha.tscn
+res://tela_escolha.gd
+res://creditos.gd
+res://game_over_menu.gd
+res://tela_titulo.gd

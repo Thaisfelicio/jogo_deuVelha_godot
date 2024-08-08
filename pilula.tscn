@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b57skgddjpnux"]
+
+[ext_resource type="Texture2D" uid="uid://cb0ociq5nmia3" path="res://assets/pilula.png" id="1_plvus"]
+
+[node name="Pilula" type="Sprite2D" groups=["grupo_pilula"]]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_plvus")

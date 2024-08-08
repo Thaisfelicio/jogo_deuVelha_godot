@@ -1,0 +1,101 @@
+[gd_scene load_steps=12 format=3 uid="uid://rupu5e44qvpj"]
+
+[ext_resource type="PackedScene" uid="uid://dawi35eby6t7o" path="res://Tabuleiro.tscn" id="1"]
+[ext_resource type="Script" path="res://Principal.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://d4ixvfvb8xfol" path="res://CirculoVerde.tscn" id="2_pww5y"]
+[ext_resource type="PackedScene" uid="uid://de7dafxqhp5gj" path="res://XAzul.tscn" id="3_jek7j"]
+[ext_resource type="PackedScene" uid="uid://b57skgddjpnux" path="res://pilula.tscn" id="4_clui5"]
+[ext_resource type="PackedScene" uid="uid://c13qbe71tacx4" path="res://game_over_menu.tscn" id="5_xuf6c"]
+[ext_resource type="AudioStream" uid="uid://xfhasuwqfdr1" path="res://assets/musics/background_jogo.mp3" id="6_77kwx"]
+[ext_resource type="AudioStream" uid="uid://lp7036faaqkk" path="res://assets/musics/efeito_jogada_o.wav" id="7_25c6m"]
+[ext_resource type="PackedScene" uid="uid://bsbuw6mretpol" path="res://tela_escolha.tscn" id="9_ufavr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j0pjy"]
+bg_color = Color(0.7949, 0.369872, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.896973, 0.720439, 1, 1)
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpcyn"]
+bg_color = Color(0.501961, 0.858824, 0.988235, 0.854902)
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
+shadow_color = Color(0.513233, 0.513233, 0.513233, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(3, -3)
+
+[node name="Principal" type="Node2D"]
+script = ExtResource("2")
+cena_circulo = ExtResource("2_pww5y")
+cena_xAzul = ExtResource("3_jek7j")
+cena_pilula = ExtResource("4_clui5")
+
+[node name="Tabuleiro" parent="." instance=ExtResource("1")]
+position = Vector2(300, 300)
+
+[node name="PainelLateral" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 600)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 599.0
+offset_right = 899.0
+offset_bottom = 600.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_j0pjy")
+
+[node name="PainelJogador" type="Panel" parent="."]
+offset_left = 650.0
+offset_top = 200.0
+offset_right = 850.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vpcyn")
+
+[node name="LabelJogador" type="Label" parent="."]
+offset_left = 600.0
+offset_top = 120.0
+offset_right = 900.0
+offset_bottom = 187.0
+theme_override_colors/font_color = Color(1, 0.99439, 0.991798, 1)
+theme_override_colors/font_shadow_color = Color(0.15704, 0.136674, 0.156772, 1)
+theme_override_colors/font_outline_color = Color(0.262932, 0.262932, 0.262932, 1)
+theme_override_font_sizes/font_size = 25
+text = "Próximo jogador(a): "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tela_escolha" parent="." instance=ExtResource("9_ufavr")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 216.0
+offset_top = 116.0
+offset_right = 216.0
+offset_bottom = 116.0
+
+[node name="GameOverMenu" parent="." instance=ExtResource("5_xuf6c")]
+process_mode = 2
+
+[node name="Musica_fundo_jogo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_77kwx")
+volume_db = -10.0
+autoplay = true
+
+[node name="efeito" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_25c6m")
+volume_db = -10.0
+
+[connection signal="child_exiting_tree" from="Tabuleiro" to="." method="_on_Tabuleiro_child_exiting_tree"]
+[connection signal="escolha_apagar" from="Tela_escolha" to="." method="_on_tela_escolha_escolha_apagar"]
+[connection signal="escolha_bloquear" from="Tela_escolha" to="." method="_on_tela_escolha_escolha_bloquear"]
+[connection signal="recomecar" from="GameOverMenu" to="." method="_on_game_over_menu_recomecar"]

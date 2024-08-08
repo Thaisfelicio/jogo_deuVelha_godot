@@ -1,0 +1,61 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1723120085
+CirculoVerde.tscn::PackedScene::9212687826268440227::1723120084::0::1::::<><>::uid://h51bimgyawu7::::res://assets/El4sP0d_avatares/3.png
+creditos.gd::GDScript::-1::1722874452::0::1::::<>Control<>::
+creditos.tscn::PackedScene::6108632068928122498::1723120085::0::1::::<><>::res://creditos.gd<>uid://c37up8n3d5a7f::::res://assets/creditos/background_creditos.jpg<>uid://dpnksr5n3yy1h::::res://assets/creditos/El4spod_sem_fundo.png<>uid://h3dfjer5hbvw::::res://assets/fontes/Robot Crush.ttf<>uid://dni746noc5yq8::::res://assets/musics/credits_music.mp3
+default_bus_layout.tres::AudioBusLayout::1846256215569781247::1723112573::0::1::::<><>::
+default_env.tres::Environment::4037960910174650082::1723120085::0::1::::<><>::
+game_over_menu.gd::GDScript::-1::1722874452::0::1::::<>CanvasLayer<>::
+game_over_menu.tscn::PackedScene::6656527397500742563::1723120085::0::1::::<><>::res://game_over_menu.gd
+icon.png::CompressedTexture2D::4885659594363379753::1722874452::1722874452::1::::<><>::
+Principal.gd::GDScript::-1::1723120083::0::1::::<>Node2D<>::
+Principal.tscn::PackedScene::1235445950934097611::1723120084::0::1::::<><>::uid://dawi35eby6t7o::::res://Tabuleiro.tscn<>res://Principal.gd<>uid://d4ixvfvb8xfol::::res://CirculoVerde.tscn<>uid://de7dafxqhp5gj::::res://XAzul.tscn<>uid://b57skgddjpnux::::res://pilula.tscn<>uid://c13qbe71tacx4::::res://game_over_menu.tscn<>uid://xfhasuwqfdr1::::res://assets/musics/background_jogo.mp3<>uid://lp7036faaqkk::::res://assets/musics/efeito_jogada_o.wav<>uid://bsbuw6mretpol::::res://tela_escolha.tscn
+README.md::TextFile::-1::1722874452::0::1::::<><>::
+pilula.tscn::PackedScene::4559257164696283419::1723120085::0::1::::<><>::uid://cb0ociq5nmia3::::res://assets/pilula.png
+tela_escolha.tscn::PackedScene::3653139521793000347::1723120085::0::1::::<><>::uid://ddjwlnwtvn568::::res://assets/calmpill-2.png
+Tabuleiro.tscn::PackedScene::7205215681798558002::1723120085::0::1::::<><>::uid://gt157ynvu7mk::::res://assets/grid.png
+tela_titulo.gd::GDScript::-1::1722874452::0::1::::<>Control<>::
+tela_titulo.tscn::PackedScene::99401380544831694::1723120085::0::1::::<><>::res://tela_titulo.gd<>uid://d18mba1s6bwlm::::res://assets/background_fundo.png<>uid://k6j6moxovoci::::res://assets/Deu_velha_logo_sem_fundo.png<>uid://h3dfjer5hbvw::::res://assets/fontes/Robot Crush.ttf<>uid://wpa1w2hcufdp::::res://assets/musics/menu_music.mp3
+XAzul.tscn::PackedScene::7506259963623842805::1722874452::0::1::::<><>::uid://b64nba8voijko::::res://assets/El4sP0d_avatares/1.png
+::res://assets/::1723120364
+background_fundo.png::CompressedTexture2D::9053026882283464210::1722874452::1722874452::1::::<><>::
+calmpill-1.png::CompressedTexture2D::6922826319292758900::1722874452::1722874452::1::::<><>::
+calmpill-2.png::CompressedTexture2D::7389764117034886223::1723120364::1723120369::1::::<><>::
+Deu_velha_logo_sem_fundo.png::CompressedTexture2D::766486612274155500::1722874452::1722874452::1::::<><>::
+grid.png::CompressedTexture2D::461990173226462642::1722874452::1722874452::1::::<><>::
+pilula.png::CompressedTexture2D::4895493710646857004::1722874452::1722874452::1::::<><>::
+::res://assets/creditos/::1722874452
+background_creditos.jpg::CompressedTexture2D::6805431958775317669::1722874452::1722874452::1::::<><>::
+El4spod_sem_fundo.png::CompressedTexture2D::8239571870540653563::1722874452::1722874452::1::::<><>::
+::res://assets/El4sP0d_avatares/::1722874452
+1.png::CompressedTexture2D::4622932949991430918::1722874452::1722874452::1::::<><>::
+2.png::CompressedTexture2D::3712549001418911690::1722874452::1722874452::1::::<><>::
+3.png::CompressedTexture2D::554834104723017824::1722874452::1722874452::1::::<><>::
+4.png::CompressedTexture2D::2153043566217544895::1722874452::1722874452::1::::<><>::
+5.png::CompressedTexture2D::5578162495665397292::1722874452::1722874452::1::::<><>::
+6.png::CompressedTexture2D::6954512362607834193::1722874452::1722874452::1::::<><>::
+7.png::CompressedTexture2D::972674054481877436::1722874452::1722874452::1::::<><>::
+8.png::CompressedTexture2D::8895513342615339942::1722874452::1722874452::1::::<><>::
+9.png::CompressedTexture2D::193883464982252061::1722874452::1722874452::1::::<><>::
+10.png::CompressedTexture2D::5856918803135656636::1722874452::1722874452::1::::<><>::
+11.png::CompressedTexture2D::7406060392320309464::1722874452::1722874452::1::::<><>::
+12.png::CompressedTexture2D::2849536549067613236::1722874452::1722874452::1::::<><>::
+13.png::CompressedTexture2D::6219880995650909331::1722874452::1722874452::1::::<><>::
+14.png::CompressedTexture2D::7350278497737989530::1722874452::1722874452::1::::<><>::
+15.png::CompressedTexture2D::1634239104500061290::1722874452::1722874452::1::::<><>::
+16.png::CompressedTexture2D::8775882730853073614::1722874452::1722874452::1::::<><>::
+::res://assets/fontes/::1722874452
+license.txt::TextFile::-1::1722874452::0::1::::<><>::
+Robot Crush Italic.otf::FontFile::8580302434076725088::1722874452::1722874452::1::::<><>::
+Robot Crush Italic.ttf::FontFile::8763463749627014341::1722874452::1722874452::1::::<><>::
+Robot Crush.otf::FontFile::2061215384904064197::1722874452::1722874452::1::::<><>::
+Robot Crush.png::CompressedTexture2D::4150713865093147848::1722874452::1722874452::1::::<><>::
+Robot Crush.ttf::FontFile::549316042229862556::1722874452::1722874452::1::::<><>::
+::res://assets/musics/::1722874452
+677859__el_boss__game-success-fanfare.wav::AudioStreamWAV::1591396610670738262::1722874452::1722874452::1::::<><>::
+background_jogo.mp3::AudioStreamMP3::1625091288731961168::1722874452::1722874452::1::::<><>::
+bg_game_music.mp3::AudioStreamMP3::1497471252016973553::1722874452::1722874452::1::::<><>::
+credits_music.mp3::AudioStreamMP3::8090228421144259121::1722874452::1722874452::1::::<><>::
+efeito_jogada_o.wav::AudioStreamWAV::805032053715339006::1722874452::1722874452::1::::<><>::
+efeito_jogada_x.wav::AudioStreamWAV::7912801011191561928::1722874452::1722874452::1::::<><>::
+menu_music.mp3::AudioStreamMP3::1575167854534071401::1722874452::1722874452::1::::<><>::

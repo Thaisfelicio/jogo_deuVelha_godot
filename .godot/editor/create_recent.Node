@@ -1,0 +1,13 @@
+CanvasLayer
+HSeparator
+Button
+TextureRect
+VBoxContainer
+HBoxContainer
+MarginContainer
+Control
+Sprite2D
+AudioStreamPlayer
+TextEdit
+Label
+Panel
