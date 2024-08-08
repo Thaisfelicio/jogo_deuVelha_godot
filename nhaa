@@ -1,0 +1,19 @@
+func bloquear_vez_adversario():
+	jogador *= -1
+
+func apagar_jogada_anterior():
+	if movimentos > 0:
+		# Encontrar e remover a última jogada
+		for y in range(2, -1, -1):
+			for x in range(2, -1, -1):
+				if dados_grade[y][x] != 0:
+					dados_grade[y][x] = 0
+					movimentos -= 1
+					# Remover o marcador visual
+					for child in get_children():
+						if child.position == Vector2i(x, y) * tamanho_celula + Vector2i(tamanho_celula / 2, tamanho_celula / 2):
+							child.queue_free()
+							break
+					break
+			if movimentos < 1:
+				break
